@@ -1,6 +1,6 @@
 { 
   "name": "baalajimaestro/codespace-workspace",
-  "image": "alpine:edge",
+  "image": "registry.gitlab.com/baalajimaestro/codespace-workspace",
   "postCreateCommand": "bash setup-container.sh",
   "forwardPorts": [2222]
 }

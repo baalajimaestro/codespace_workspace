@@ -1,0 +1,28 @@
+version: v1.0
+name: Build Workspace Container
+
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: "Build and Push"
+    task:
+      secrets:
+        - name: api-keys
+
+      prologue:
+        commands:
+          - checkout
+          - echo "$DOCKER_PASSWORD" | docker login registry.gitlab.com -u "$DOCKER_USERNAME" --password-stdin &> /dev/null
+      
+      jobs:
+      - name: Build
+        commands:     
+          - docker build . -t registry.gitlab.com/baalajimaestro/codespace-workspace:latest
+      
+      epilogue:
+        on_pass:
+          commands:                   
+          - docker push registry.gitlab.com/baalajimaestro/codespace-workspace:latest
