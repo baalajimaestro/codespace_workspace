@@ -52,6 +52,7 @@ RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rus
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
 
 RUN ssh-keygen -A
+RUN sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config 
 
 WORKDIR /workspaces
 USER baalajimaestro

@@ -6,7 +6,7 @@ git clone -q https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaest
 cd /tmp/keys
 mkdir ~/.ssh
 mv id_ed25519 ~/.ssh/id_ed25519
-cat authorized_keys >> ~/.ssh/authorized_keys
+mv authorized_keys ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/authorized_keys
 mv baalajimaestro.gpg /tmp
@@ -23,7 +23,7 @@ git config --global init.defaultBranch master
 cd ..
 rm -rf /tmp/keys
 
-sudo /usr/sbin/sshd -p 2222
+sudo /usr/sbin/sshd
 echo "SSH Daemon started, login with ssh -p 2222 localhost"
 
 echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
