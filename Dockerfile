@@ -1,5 +1,9 @@
 FROM alpine:edge
 
+RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
+
+RUN apk update
+
 RUN apk add --no-cache coreutils \
                        alpine-sdk \
                        make \
@@ -18,7 +22,9 @@ RUN apk add --no-cache coreutils \
                        openssh-client \
                        sudo \
                        ca-certificates \
-                       nano
+                       nano \
+                       docker \
+                       docker-compose
                        
 RUN curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
@@ -44,5 +50,7 @@ RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rus
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
 
 WORKDIR /workspaces
+
+ENV LANG C.UTF-8
 
 CMD ["/usr/bin/bash"]
