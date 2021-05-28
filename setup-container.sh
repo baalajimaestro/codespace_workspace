@@ -27,7 +27,7 @@ sudo /usr/sbin/sshd
 echo "SSH Daemon started, login with ssh -p 2222 localhost"
 
 echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
-echo 'export PS1="[\u@\h \W]\\$"' >> ~/.bashrc
+echo 'export PS1="[\u@\h \W]\\$ "' >> ~/.bashrc
 
 echo "Starting Docker..."
 sudo nohup dockerd > /dev/null 2>&1 &
