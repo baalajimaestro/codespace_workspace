@@ -2,7 +2,7 @@
 
 echo "Setting up necessary files!"
 
-git clone https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaestro/keys /tmp/keys
+git clone -q https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaestro/keys /tmp/keys
 cd /tmp/keys
 mkdir ~/.ssh
 mv id_ed25519 ~/.ssh/id_ed25519
@@ -16,13 +16,13 @@ git config --global commit.gpgsign true
 git config --global user.signingkey 35EA585CF08135747CE5DDB4F93C394FE9BBAFD5
 git config --global core.editor nano
 git config --global push.gpgSign if-asked
-git config --global init,defaultBranch master
+git config --global init.defaultBranch master
 
 cd ..
 rm -rf /tmp/keys
 
 sudo /usr/sbin/sshd -p 2222
-echo "SSH Daemon started!"
+echo "SSH Daemon started, login with ssh -p 2222 localhost"
 
 echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
 
