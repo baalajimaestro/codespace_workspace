@@ -1,0 +1,4 @@
+{ 
+  "name": "baalajimaestro/codespace-workspace",
+  "image": "alpine:edge"
+}
