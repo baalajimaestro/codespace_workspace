@@ -1,4 +1,5 @@
 { 
   "name": "baalajimaestro/codespace-workspace",
-  "image": "alpine:edge"
+  "image": "alpine:edge",
+  "forwardPorts": [2222]
 }
