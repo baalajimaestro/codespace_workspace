@@ -16,7 +16,7 @@ RUN apk add --no-cache coreutils \
                        python3 \
                        python3-dev \
                        py3-pip \
-                       openjdk16-jdk \
+                       openjdk11-jdk \
                        bash \
                        openssh-server \
                        openssh-client \
