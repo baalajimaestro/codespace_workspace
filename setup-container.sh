@@ -21,13 +21,10 @@ git config --global init,defaultBranch master
 cd ..
 rm -rf /tmp/keys
 
-/usr/sbin/sshd -p 2222
+sudo /usr/sbin/sshd -p 2222
 echo "SSH Daemon started!"
 
 echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
-
-sudo mount -t tmpfs -o size=8G /dev/null /dev/shm
-sleep 2
 
 echo "Starting Docker..."
 sudo nohup dockerd > /dev/null 2>&1 &

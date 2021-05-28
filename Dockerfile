@@ -31,7 +31,7 @@ RUN curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 RUN adduser --disabled-password \
             --gecos "" \
             --home "/workspaces" \
-            --shell "/usr/bin/bash" \ 
+            --shell "/bin/bash" \
             baalajimaestro
 
 RUN addgroup baalajimaestro docker
@@ -50,6 +50,8 @@ RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rus
     ./rustup-init -y --no-modify-path --profile default --default-toolchain $RUST_VERSION; \
     rm rustup-init; \
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
+
+RUN ssh-keygen -A
 
 WORKDIR /workspaces
 USER baalajimaestro
