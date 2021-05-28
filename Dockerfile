@@ -38,7 +38,7 @@ RUN addgroup baalajimaestro docker
 
 RUN echo "baalajimaestro ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-USER baalajimaestro
+RUN mkdir /usr/local/rustup /usr/local/cargo
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
@@ -52,6 +52,7 @@ RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rus
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
 
 WORKDIR /workspaces
+USER baalajimaestro
 
 ENV LANG C.UTF-8
 
