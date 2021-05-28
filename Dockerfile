@@ -58,4 +58,4 @@ USER baalajimaestro
 
 ENV LANG C.UTF-8
 
-CMD ["/usr/bin/bash"]
+CMD ["/bin/bash"]

@@ -7,6 +7,8 @@ cd /tmp/keys
 mkdir ~/.ssh
 mv id_ed25519 ~/.ssh/id_ed25519
 cat authorized_keys >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/authorized_keys
 mv baalajimaestro.gpg /tmp
 
 echo "Import GPG keys yourself, placed in /tmp"
@@ -25,6 +27,7 @@ sudo /usr/sbin/sshd -p 2222
 echo "SSH Daemon started, login with ssh -p 2222 localhost"
 
 echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
+echo 'export PS1="[\u@\h \W]\\$"' >> ~/.bashrc
 
 echo "Starting Docker..."
 sudo nohup dockerd > /dev/null 2>&1 &
