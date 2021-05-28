@@ -1,5 +1,6 @@
 { 
   "name": "baalajimaestro/codespace-workspace",
   "image": "alpine:edge",
+  "postCreateCommand": "bash setup-container.sh",
   "forwardPorts": [2222]
 }

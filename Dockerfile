@@ -34,6 +34,8 @@ RUN adduser --disabled-password \
             --shell "/usr/bin/bash" \ 
             baalajimaestro
 
+RUN addgroup baalajimaestro docker
+
 RUN echo "baalajimaestro ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER baalajimaestro
