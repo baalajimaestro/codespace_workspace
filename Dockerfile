@@ -58,6 +58,9 @@ RUN echo 'baalajimaestro:1234' | chpasswd
 WORKDIR /workspaces
 USER baalajimaestro
 
+RUN echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
+RUN echo 'export PS1="[\u@\h \W]\\$ "' >> ~/.bashrc
+
 ENV LANG C.UTF-8
 
 CMD ["/bin/bash"]

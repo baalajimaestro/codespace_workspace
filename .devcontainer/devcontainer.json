@@ -1,6 +1,6 @@
 { 
   "name": "baalajimaestro/codespace-workspace",
   "image": "registry.gitlab.com/baalajimaestro/codespace-workspace",
-  "postCreateCommand": "bash setup-container.sh",
+  "postAttachCommand": "bash setup-container.sh",
   "forwardPorts": [2222]
 }
