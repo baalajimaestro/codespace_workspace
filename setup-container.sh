@@ -19,7 +19,8 @@ git config --global user.signingkey 35EA585CF08135747CE5DDB4F93C394FE9BBAFD5
 git config --global core.editor nano
 git config --global push.gpgSign if-asked
 git config --global init.defaultBranch master
-
+echo 'export GPG_TTY=$(tty)' >> /workspaces/.bashrc
+echo 'export PS1="[\u@\h \W]\\$ "' >> /workspaces/.bashrc
 cd ..
 rm -rf /tmp/keys
 
@@ -27,5 +28,5 @@ sudo /usr/sbin/sshd
 echo "SSH Daemon started, login with ssh -p 2222 localhost"
 
 echo "Starting Docker..."
-sudo nohup /usr/local/bin/docker-init.sh &
+sudo /usr/local/bin/docker-init.sh &
 echo "Docker daemon started..."

@@ -1,8 +1,24 @@
 FROM alpine:edge
 
-RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
+# Env Vars for Rust and Android Build Tools
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    RUST_VERSION=nightly \
+    ANDROID_SDK_ROOT="/opt/android-sdk" \
+    ANDROID_HOME="/opt/android-sdk" \
+    CMDLINE_VERSION="4.0" \
+    SDK_TOOLS_VERSION="7302050" \
+    BUILD_TOOLS_VERSION="30.0.2" \
+    LANG="C.UTF-8"
 
-RUN apk update
+# Set PATH
+ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
+
+# DIND Hack
+ADD docker-init.sh /usr/local/bin/docker-init.sh
+
+# Enable Community Repo
+RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 
 RUN apk add --update --no-cache coreutils \
                                 alpine-sdk \
@@ -27,44 +43,18 @@ RUN apk add --update --no-cache coreutils \
                                 docker-compose \
                                 fuse \
                                 fuse-overlayfs && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
-ADD docker-init.sh /usr/local/bin/docker-init.sh
-RUN chmod +x /usr/local/bin/docker-init.sh
-
-RUN curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
-
-RUN adduser --disabled-password \
-            --gecos "" \
-            --home "/workspaces" \
-            --shell "/bin/bash" \
-            baalajimaestro
-
-RUN addgroup baalajimaestro docker
-
-RUN echo "baalajimaestro ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-RUN mkdir /usr/local/rustup /usr/local/cargo
-
-ENV RUSTUP_HOME=/usr/local/rustup \
-    CARGO_HOME=/usr/local/cargo \
-    PATH=/usr/local/cargo/bin:$PATH \
-    RUST_VERSION=nightly
-
-RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rustup-init"; \
+# Install Rust Nightly Toolchain
+RUN mkdir /usr/local/rustup /usr/local/cargo && \
+    wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rustup-init"; \
     chmod +x rustup-init; \
     ./rustup-init -y --no-modify-path --profile default --default-toolchain $RUST_VERSION; \
     rm rustup-init; \
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
 
-ENV ANDROID_SDK_ROOT "/opt/android-sdk"
-ENV ANDROID_HOME ${ANDROID_SDK_ROOT}
-ENV CMDLINE_VERSION "4.0"
-ENV SDK_TOOLS_VERSION "7302050"
-ENV BUILD_TOOLS_VERSION "30.0.2"
-
-ENV PATH $PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
-
+# Install SDK Manager and Android Build Tools
 RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS_VERSION}_latest.zip && \
     sudo mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     sudo unzip -qq commandlinetools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
@@ -75,16 +65,20 @@ RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/comm
     echo "Accepted all available licenses for Android SDK" && \
     sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}"
 
-
-RUN ssh-keygen -A
-RUN sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config 
-RUN echo 'baalajimaestro:1234' | chpasswd
-ENV LANG C.UTF-8
+# Setup User
+RUN adduser --disabled-password \
+            --gecos "" \
+            --home "/workspaces" \
+            --shell "/bin/bash" \
+            baalajimaestro && \
+            addgroup baalajimaestro docker && \
+    echo "baalajimaestro ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    ssh-keygen -A && \
+    sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && \
+    echo 'baalajimaestro:1234' | chpasswd && \
+    chmod +x /usr/local/bin/docker-init.sh
 
 WORKDIR /workspaces
 USER baalajimaestro
-
-RUN echo 'export GPG_TTY=$(tty)' >> /workspaces/.bashrc
-RUN echo 'export PS1="[\u@\h \W]\\$ "' >> /workspaces/.bashrc
 
 CMD ["/bin/bash"]
