@@ -27,5 +27,5 @@ sudo /usr/sbin/sshd
 echo "SSH Daemon started, login with ssh -p 2222 localhost"
 
 echo "Starting Docker..."
-sudo bash /usr/bin/docker-init.sh &
+sudo nohup /usr/local/bin/docker-init.sh &
 echo "Docker daemon started..."

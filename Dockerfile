@@ -28,8 +28,8 @@ RUN apk add --no-cache coreutils \
                        fuse \
                        fuse-overlayfs
 
-ADD docker-init.sh /usr/bin/docker-init.sh
-RUN chmod +x /usr/bin/docker-init.sh
+ADD docker-init.sh /usr/local/bin/docker-init.sh
+RUN chmod +x /usr/local/bin/docker-init.sh
 
 RUN curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
@@ -78,13 +78,12 @@ RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/comm
 RUN ssh-keygen -A
 RUN sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config 
 RUN echo 'baalajimaestro:1234' | chpasswd
+ENV LANG C.UTF-8
 
 WORKDIR /workspaces
 USER baalajimaestro
 
-RUN echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
-RUN echo 'export PS1="[\u@\h \W]\\$ "' >> ~/.bashrc
-
-ENV LANG C.UTF-8
+RUN echo 'export GPG_TTY=$(tty)' >> /workspaces/.bashrc
+RUN echo 'export PS1="[\u@\h \W]\\$ "' >> /workspaces/.bashrc
 
 CMD ["/bin/bash"]
