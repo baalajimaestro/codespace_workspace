@@ -68,7 +68,7 @@ RUN adduser --disabled-password \
             --home "/workspaces" \
             --shell "/bin/bash" \
             baalajimaestro && \
-            addgroup baalajimaestro docker && \
+    addgroup baalajimaestro docker && \
     echo "baalajimaestro ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     ssh-keygen -A && \
     sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && \

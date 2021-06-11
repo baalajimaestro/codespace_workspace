@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "Setting up necessary files!"
+echo "Initial Codespace Setup Running!"
 
 git clone -q https://baalajimaestro:${GH_PERSONAL_TOKEN}@github.com/baalajimaestro/keys /tmp/keys
 cd /tmp/keys
@@ -21,8 +21,4 @@ git config --global push.gpgSign if-asked
 git config --global init.defaultBranch master
 echo 'export GPG_TTY=$(tty)' >> /workspaces/.bashrc
 echo 'export PS1="[\u@\h \W]\\$ "' >> /workspaces/.bashrc
-cd ..
 rm -rf /tmp/keys
-
-sudo /usr/sbin/sshd
-echo "SSH Daemon started, login with ssh -p 2222 localhost"
