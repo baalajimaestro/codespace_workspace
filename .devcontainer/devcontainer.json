@@ -6,18 +6,15 @@
     "matklad.rust-analyzer",
     "ms-python.python",
     "ms-vscode.cpptools",
-    "pkief.material-icon-theme",
-    "akamud.vscode-theme-onedark",
     "eamodio.gitlens",
     "yzhang.markdown-all-in-one",
     "tamasfe.even-better-toml",
-    "coenraads.bracket-pair-colorizer-2",
     "esbenp.prettier-vscode",
-    "aaron-bond.better-comments",
     "ms-vsliveshare.vsliveshare",
     "aleg94.share-snippet",
     "christian-kohler.path-intellisense"
   ],
+  "runArgs": ["--privileged"],
   "postAttachCommand": "bash setup-container.sh",
   "forwardPorts": [2222]
 }
