@@ -16,13 +16,13 @@ blocks:
         commands:
           - checkout
           - echo "$DOCKER_PASSWORD" | docker login registry.gitlab.com -u "$DOCKER_USERNAME" --password-stdin &> /dev/null
-      
+          - docker pull registry.gitlab.com/baalajimaestro/codespace-workspace
       jobs:
       - name: Build
         commands:     
-          - docker build . -t registry.gitlab.com/baalajimaestro/codespace-workspace:latest
+          - DOCKER_BUILDKIT=1 docker build --cache-from registry.gitlab.com/baalajimaestro/codespace-workspace --build-arg BUILDKIT_INLINE_CACHE=1 -t registry.gitlab.com/baalajimaestro/codespace-workspace:latest .
       
       epilogue:
         on_pass:
-          commands:                   
+          commands:                
           - docker push registry.gitlab.com/baalajimaestro/codespace-workspace:latest

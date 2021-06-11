@@ -4,29 +4,30 @@ RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/r
 
 RUN apk update
 
-RUN apk add --no-cache coreutils \
-                       alpine-sdk \
-                       make \
-                       xz \
-                       tar \
-                       zip \
-                       unzip \
-                       unrar \
-                       rustup \
-                       python3 \
-                       python3-dev \
-                       py3-pip \
-                       openjdk11-jdk \
-                       bash \
-                       openssh-server \
-                       openssh-client \
-                       sudo \
-                       ca-certificates \
-                       nano \
-                       docker \
-                       docker-compose \
-                       fuse \
-                       fuse-overlayfs
+RUN apk add --update --no-cache coreutils \
+                                alpine-sdk \
+                                make \
+                                xz \
+                                tar \
+                                zip \
+                                unzip \
+                                unrar \
+                                rustup \
+                                python3 \
+                                python3-dev \
+                                py3-pip \
+                                openjdk11-jdk \
+                                bash \
+                                openssh-server \
+                                openssh-client \
+                                sudo \
+                                ca-certificates \
+                                nano \
+                                docker \
+                                docker-compose \
+                                fuse \
+                                fuse-overlayfs && \
+    rm -rf /var/cache/apk/*
 
 ADD docker-init.sh /usr/local/bin/docker-init.sh
 RUN chmod +x /usr/local/bin/docker-init.sh
