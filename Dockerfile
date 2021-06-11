@@ -24,7 +24,9 @@ RUN apk add --no-cache coreutils \
                        ca-certificates \
                        nano \
                        docker \
-                       docker-compose
+                       docker-compose \
+                       fuse \
+                       fuse-overlayfs
 
 ADD docker-init.sh /usr/bin/docker-init.sh
 RUN chmod +x /usr/bin/docker-init.sh
@@ -85,5 +87,4 @@ RUN echo 'export PS1="[\u@\h \W]\\$ "' >> ~/.bashrc
 
 ENV LANG C.UTF-8
 
-ENTRYPOINT [ "/usr/bin/docker-init.sh" ]
 CMD ["/bin/bash"]

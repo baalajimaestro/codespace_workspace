@@ -53,8 +53,4 @@ else
 fi
 set -e
 # Start docker/moby engine
-( sudoIf dockerd $CUSTOMDNS > /tmp/dockerd.log 2>&1 ) &
-set +e
-# Execute whatever commands were passed in (if any). This allows us 
-# to set this script to ENTRYPOINT while still executing the default CMD.
-exec "$@"
+( sudoIf dockerd $CUSTOMDNS > /tmp/dockerd.log 2>&1 )
