@@ -17,6 +17,6 @@
   "runArgs": ["--privileged"],
   "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
   "postCreateCommand": "bash setup-container.sh",
-  "postAttachCommand": "sudo /usr/sbin/sshd",
+  "postAttachCommand": "sudo /usr/sbin/sshd; sudo chgrp docker /var/run/docker.sock",
   "forwardPorts": [2222]
 }
