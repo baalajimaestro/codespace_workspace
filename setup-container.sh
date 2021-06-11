@@ -26,7 +26,3 @@ rm -rf /tmp/keys
 
 sudo /usr/sbin/sshd
 echo "SSH Daemon started, login with ssh -p 2222 localhost"
-
-echo "Starting Docker..."
-sudo /usr/local/bin/docker-init.sh &
-echo "Docker daemon started..."

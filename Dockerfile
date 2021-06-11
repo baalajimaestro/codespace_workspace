@@ -14,9 +14,6 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 # Set PATH
 ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
 
-# DIND Hack
-ADD docker-init.sh /usr/local/bin/docker-init.sh
-
 # Enable Community Repo
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 
@@ -75,8 +72,7 @@ RUN adduser --disabled-password \
     echo "baalajimaestro ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     ssh-keygen -A && \
     sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && \
-    echo 'baalajimaestro:1234' | chpasswd && \
-    chmod +x /usr/local/bin/docker-init.sh
+    echo 'baalajimaestro:1234' | chpasswd
 
 WORKDIR /workspaces
 USER baalajimaestro
