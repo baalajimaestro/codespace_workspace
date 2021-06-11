@@ -56,18 +56,20 @@ RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rus
 
 ENV ANDROID_SDK_ROOT "/opt/android-sdk"
 ENV ANDROID_HOME ${ANDROID_SDK_ROOT}
-ENV PATH $PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
 ENV CMDLINE_VERSION "4.0"
-ENV SDK_TOOLS "7302050"
+ENV SDK_TOOLS_VERSION "7302050"
+ENV BUILD_TOOLS_VERSION "30.0.2"
+ENV NDK_VERSION "21.4.7075529"
+ENV PATH $PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
 
-RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS}_latest.zip && \
-    mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
-    unzip -qq commandlinetools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
-    mv ${ANDROID_SDK_ROOT}/cmdline-tools/* ${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION} && \
+RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS_VERSION}_latest.zip && \
+    sudo mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    sudo unzip -qq commandlinetools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    sudo mv ${ANDROID_SDK_ROOT}/cmdline-tools/* ${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION} && \
     rm -v commandlinetools.zip && \
     mkdir -p ~/.android/ && touch ~/.android/repositories.cfg && \
     yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses && \
-    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;30.0.2" "ndk;21.4.7075529"
+    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}" "ndk;${NDK_VERSION}"
 
 
 RUN ssh-keygen -A
