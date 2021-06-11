@@ -59,7 +59,7 @@ ENV ANDROID_HOME ${ANDROID_SDK_ROOT}
 ENV CMDLINE_VERSION "4.0"
 ENV SDK_TOOLS_VERSION "7302050"
 ENV BUILD_TOOLS_VERSION "30.0.2"
-ENV NDK_VERSION "21.4.7075529"
+
 ENV PATH $PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
 
 RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS_VERSION}_latest.zip && \
@@ -70,7 +70,7 @@ RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/comm
     mkdir -p ~/.android/ && touch ~/.android/repositories.cfg && \
     yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses > /dev/null && \
     echo "Accepted all available licenses for Android SDK" && \
-    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}" "ndk;${NDK_VERSION}"
+    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}"
 
 
 RUN ssh-keygen -A
