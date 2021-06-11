@@ -68,7 +68,8 @@ RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/comm
     sudo mv ${ANDROID_SDK_ROOT}/cmdline-tools/* ${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION} && \
     rm -v commandlinetools.zip && \
     mkdir -p ~/.android/ && touch ~/.android/repositories.cfg && \
-    yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses && \
+    yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses > /dev/null && \
+    echo "Accepted all available licenses for Android SDK" && \
     sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}" "ndk;${NDK_VERSION}"
 
 
