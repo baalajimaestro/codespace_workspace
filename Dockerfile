@@ -54,6 +54,22 @@ RUN wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rus
     rm rustup-init; \
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
 
+ENV ANDROID_SDK_ROOT "/opt/android-sdk"
+ENV ANDROID_HOME ${ANDROID_SDK_ROOT}
+ENV PATH $PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
+ENV CMDLINE_VERSION "4.0"
+ENV SDK_TOOLS "7302050"
+
+RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS}_latest.zip && \
+    mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    unzip -qq commandlinetools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    mv ${ANDROID_SDK_ROOT}/cmdline-tools/* ${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION} && \
+    rm -v commandlinetools.zip && \
+    mkdir -p ~/.android/ && touch ~/.android/repositories.cfg && \
+    yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses && \
+    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;30.0.2" "ndk;21.4.7075529"
+
+
 RUN ssh-keygen -A
 RUN sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config 
 RUN echo 'baalajimaestro:1234' | chpasswd
