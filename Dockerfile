@@ -25,7 +25,10 @@ RUN apk add --no-cache coreutils \
                        nano \
                        docker \
                        docker-compose
-                       
+
+ADD docker-init.sh /usr/bin/docker-init.sh
+RUN chmod +x /usr/bin/docker-init.sh
+
 RUN curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
 RUN adduser --disabled-password \
@@ -63,4 +66,5 @@ RUN echo 'export PS1="[\u@\h \W]\\$ "' >> ~/.bashrc
 
 ENV LANG C.UTF-8
 
+ENTRYPOINT [ "/usr/bin/docker-init.sh" ]
 CMD ["/bin/bash"]
