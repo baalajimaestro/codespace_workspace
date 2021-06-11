@@ -24,5 +24,6 @@ blocks:
       
       epilogue:
         on_pass:
-          commands:                
+          commands:
+          - docker history registry.gitlab.com/baalajimaestro/codespace-workspace:latest                
           - docker push registry.gitlab.com/baalajimaestro/codespace-workspace:latest
