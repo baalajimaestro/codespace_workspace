@@ -9,7 +9,7 @@ ENV ANDROID_SDK_ROOT="/opt/android-sdk" \
     LANG="C.UTF-8"
 
 # Set PATH
-ENV PATH=$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools
+ENV PATH=$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}
 
 RUN dnf -y update \
     && dnf -y install dnf-plugins-core \

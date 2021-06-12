@@ -31,6 +31,6 @@ echo 'export CMDLINE_VERSION="4.0"' >> /workspaces/.bashrc
 echo 'export SDK_TOOLS_VERSION="7302050"' >> /workspaces/.bashrc
 echo 'export BUILD_TOOLS_VERSION="30.0.2"' >> /workspaces/.bashrc
 echo 'export LANG="C.UTF-8"' >> /workspaces/.bashrc
-echo 'export PATH="$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools"' >> /workspaces/.bashrc
+echo 'export PATH="$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}"' >> /workspaces/.bashrc
 
 rm -rf /tmp/keys
