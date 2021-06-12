@@ -20,5 +20,4 @@ git config --global core.editor nano
 git config --global push.gpgSign if-asked
 git config --global init.defaultBranch master
 echo 'export GPG_TTY=$(tty)' >> /workspaces/.bashrc
-echo 'export PS1="[\u@\h \W]\\$ "' >> /workspaces/.bashrc
 rm -rf /tmp/keys

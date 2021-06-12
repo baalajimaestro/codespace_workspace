@@ -1,14 +1,11 @@
 { 
-  "name": "baalajimaestro/codespace-workspace",
-  "image": "registry.gitlab.com/baalajimaestro/codespace-workspace",
+  "name": "baalajimaestro/codespace-kernel-workspace",
+  "image": "registry.gitlab.com/baalajimaestro/codespace-kernel-workspace",
   "extensions": [
     "ms-azuretools.vscode-docker",
-    "matklad.rust-analyzer",
-    "ms-python.python",
     "ms-vscode.cpptools",
     "eamodio.gitlens",
     "yzhang.markdown-all-in-one",
-    "tamasfe.even-better-toml",
     "esbenp.prettier-vscode",
     "ms-vsliveshare.vsliveshare",
     "aleg94.share-snippet",
