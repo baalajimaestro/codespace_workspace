@@ -46,6 +46,10 @@ RUN apk add --update --no-cache alpine-sdk \
     -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     megatools && \
     rm -rf /var/cache/apk/* && \
+    curl -sLo gdrive.tar.gz https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz && \
+    tar -xf gdrive.tar.gz && \
+    mv gdrive /usr/bin && \
+    rm -rf gdrive.tar.gz && \
     curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
 # Install Rust Nightly Toolchain
