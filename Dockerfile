@@ -17,29 +17,34 @@ ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_
 # Enable Community Repo
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 
-RUN apk add --update --no-cache coreutils \
-                                alpine-sdk \
-                                make \
-                                xz \
-                                tar \
-                                zip \
-                                unzip \
-                                unrar \
-                                rustup \
-                                python3 \
-                                python3-dev \
-                                py3-pip \
-                                openjdk11-jdk \
+RUN apk add --update --no-cache alpine-sdk \
                                 bash \
-                                openssh-server \
-                                openssh-client \
-                                sudo \
                                 ca-certificates \
-                                nano \
+                                coreutils \
                                 docker \
                                 docker-compose \
                                 fuse \
-                                fuse-overlayfs && \
+                                fuse-overlayfs \
+                                make \
+                                nano \
+                                openjdk11-jdk \
+                                openssh-client \
+                                openssh-server \
+                                openssl \
+                                openssl-dev \
+                                py3-pip \
+                                python3 \
+                                python3-dev \
+                                rclone \
+                                sudo \
+                                tar \
+                                unrar \
+                                unzip \
+                                xz \
+                                zip && \
+    apk add --no-cache \
+    -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    megatools && \
     rm -rf /var/cache/apk/* && \
     curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
