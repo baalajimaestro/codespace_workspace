@@ -20,7 +20,7 @@ blocks:
       jobs:
       - name: Build
         commands:     
-          - DOCKER_BUILDKIT=1 docker build --cache-from registry.gitlab.com/baalajimaestro/codespace-workspace --build-arg BUILDKIT_INLINE_CACHE=1 -t registry.gitlab.com/baalajimaestro/codespace-workspace:latest .
+          - DOCKER_BUILDKIT=1 docker build --cache-from registry.gitlab.com/baalajimaestro/codespace-workspace --progress=plain --build-arg BUILDKIT_INLINE_CACHE=1 -t registry.gitlab.com/baalajimaestro/codespace-workspace:latest .
       
       epilogue:
         on_pass:
