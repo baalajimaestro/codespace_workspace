@@ -56,6 +56,7 @@ RUN dnf -y update \
                       openssl \
                       openssl-devel \
                       pigz \
+                      pinentry \
                       procps \
                       python3 \
                       python3-pip \
