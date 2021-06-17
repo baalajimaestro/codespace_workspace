@@ -73,6 +73,10 @@ RUN dnf -y update \
     && tar -xf gdrive.tar.gz \
     && mv gdrive /usr/bin \
     && rm -rf gdrive.tar.gz \
+    && curl -sLo ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip \
+    && unzip ngrok.zip \
+    && mv ngrok /usr/bin \
+    && rm -rf ngrok.zip \
     && curl -sLo isl-0.22.1.tar.xz http://isl.gforge.inria.fr/isl-0.22.1.tar.xz \
     && tar -xf isl-0.22.1.tar.xz \
     && cd isl-0.22.1 \
