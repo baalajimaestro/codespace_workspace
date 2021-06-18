@@ -10,6 +10,7 @@ mv authorized_keys ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/authorized_keys
 mv baalajimaestro.gpg /tmp
+ngrok authtoken ${NGROK_TOKEN}
 
 echo "Import GPG keys yourself, placed in /tmp"
 git config --global user.name baalajimaestro
