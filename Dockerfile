@@ -112,4 +112,18 @@ RUN mkdir /workspaces && \
 WORKDIR /workspaces
 USER baalajimaestro
 
+# Redo the ENV
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    RUST_VERSION=nightly \
+    ANDROID_SDK_ROOT="/opt/android-sdk" \
+    ANDROID_HOME="/opt/android-sdk" \
+    CMDLINE_VERSION="4.0" \
+    SDK_TOOLS_VERSION="7302050" \
+    BUILD_TOOLS_VERSION="30.0.2" \
+    ANDROID_PLATFORM_VERSION="android-30" \
+    LANG="C.UTF-8"
+
+ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}
+
 CMD ["/bin/bash"]
