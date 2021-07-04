@@ -17,6 +17,6 @@
   "runArgs": ["--privileged"],
   "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
   "postCreateCommand": "bash setup-container.sh",
-  "postAttachCommand": "sudo /usr/bin/supervisord -c /etc/supervisord.conf",
+  "postAttachCommand": "cd /tmp; sudo /usr/bin/supervisord -c /etc/supervisord.conf",
   "forwardPorts": [2222]
 }
