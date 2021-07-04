@@ -76,14 +76,7 @@ RUN dnf -y update \
     && curl -sLo ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip \
     && unzip ngrok.zip \
     && mv ngrok /usr/bin \
-    && rm -rf ngrok.zip \
-    && curl -sLo isl-0.22.1.tar.xz http://isl.gforge.inria.fr/isl-0.22.1.tar.xz \
-    && tar -xf isl-0.22.1.tar.xz \
-    && cd isl-0.22.1 \
-    && ./configure > /dev/null \
-    && sudo make install > /dev/null \
-    && cd .. \
-    && rm -rf isl-0.22.1 isl-0.22.1.tar.xz
+    && rm -rf ngrok.zip
 
 # Install Rust Nightly Toolchain
 RUN mkdir /usr/local/rustup /usr/local/cargo && \
