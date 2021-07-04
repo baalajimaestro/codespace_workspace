@@ -1,4 +1,4 @@
 #! /bin/bash
 
-sudo /usr/sbin/sshd
+sudo supervisord
 sudo chgrp docker /var/run/docker.sock

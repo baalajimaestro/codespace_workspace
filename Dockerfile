@@ -15,6 +15,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 # Set PATH
 ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}:/opt/gradle/bin
 
+COPY supervisord.conf /etc/supervisord.conf
+
 RUN dnf -y update \
     && dnf -y install dnf-plugins-core \
     && sudo dnf config-manager \
