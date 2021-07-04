@@ -44,6 +44,7 @@ RUN dnf -y update \
                       gmp-devel \
                       gnupg \
                       hostname \
+                      htop \
                       java-openjdk-headless \
                       lftp \
                       libtool \
