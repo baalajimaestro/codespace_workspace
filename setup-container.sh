@@ -37,4 +37,7 @@ echo 'export BUILD_TOOLS_VERSION="30.0.2"' >> /workspaces/.bashrc
 echo 'export LANG="C.UTF-8"' >> /workspaces/.bashrc
 echo 'export PATH="$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}"' >> /workspaces/.bashrc
 
+# Prune Docker, lot of useless MCR containers get pulled in
+docker system prune -a -f
+
 rm -rf /tmp/keys
