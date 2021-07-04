@@ -9,6 +9,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     CMDLINE_VERSION="4.0" \
     SDK_TOOLS_VERSION="7302050" \
     BUILD_TOOLS_VERSION="30.0.2" \
+    ANDROID_PLATFORM_VERSION="android-30" \
     LANG="C.UTF-8"
 
 # Set PATH
@@ -95,7 +96,8 @@ RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/comm
     mkdir -p ~/.android/ && touch ~/.android/repositories.cfg && \
     yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses > /dev/null && \
     echo "Accepted all available licenses for Android SDK" && \
-    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}"
+    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "build-tools;${BUILD_TOOLS_VERSION}" && \
+    sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "platforms;${ANDROID_PLATFORM_VERSION}"
 
 # Setup User
 RUN mkdir /workspaces && \
