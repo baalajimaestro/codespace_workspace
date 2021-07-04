@@ -81,7 +81,8 @@ RUN dnf -y update \
     && curl -sLo gradle.zip https://services.gradle.org/distributions/gradle-6.9-bin.zip \
     && unzip gradle.zip \
     && mv gradle-6.9 /opt/gradle \
-    && rm -rf gradle.zip
+    && rm -rf gradle.zip \
+    && curl https://cli-assets.heroku.com/install.sh | sh
 
 # Install Rust Nightly Toolchain
 RUN mkdir /usr/local/rustup /usr/local/cargo && \
