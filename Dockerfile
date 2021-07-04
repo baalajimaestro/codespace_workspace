@@ -77,7 +77,11 @@ RUN dnf -y update \
     && curl -sLo ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip \
     && unzip ngrok.zip \
     && mv ngrok /usr/bin \
-    && rm -rf ngrok.zip
+    && rm -rf ngrok.zip \
+    && curl -sLo gradle.zip https://services.gradle.org/distributions/gradle-6.9-bin.zip \
+    && unzip gradle.zip \
+    && mv gradle-6.9 /opt/gradle \
+    && rm -rf gradle.zip
 
 # Install Rust Nightly Toolchain
 RUN mkdir /usr/local/rustup /usr/local/cargo && \
