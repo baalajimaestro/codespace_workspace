@@ -63,6 +63,7 @@ RUN dnf -y update \
                       python3-pip \
                       rclone \
                       shtool \
+                      supervisor \
                       tar \
                       wget \
                       which \
