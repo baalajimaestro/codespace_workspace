@@ -26,7 +26,4 @@ echo 'export GPG_TTY=$(tty)' >> /workspaces/.bashrc
 echo 'export PS1="[\u@\h \W]\\$ "' >> /workspaces/.bashrc
 echo '. /workspaces/.bashrc' >> /workspaces/.bash_profile
 
-# Prune Docker, lot of useless MCR containers get pulled in
-docker system prune -a -f
-
 rm -rf /tmp/keys
