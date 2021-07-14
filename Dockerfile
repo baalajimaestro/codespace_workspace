@@ -10,10 +10,11 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     SDK_TOOLS_VERSION="7302050" \
     BUILD_TOOLS_VERSION="30.0.2" \
     ANDROID_PLATFORM_VERSION="android-30" \
-    LANG="C.UTF-8"
+    LANG="C.UTF-8" \
+    DEFAULT_PATH="/usr/lib64/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Set PATH
-ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}:/opt/gradle/bin
+ENV PATH=$DEFAULT_PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}:/opt/gradle/bin
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY prune-container.sh /usr/local/bin/prune-container.sh
@@ -134,6 +135,6 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     ANDROID_PLATFORM_VERSION="android-30" \
     LANG="C.UTF-8"
 
-ENV PATH=$PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}:/opt/gradle/bin
+ENV PATH=$DEFAULT_PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}:/opt/gradle/bin
 
 CMD ["/bin/bash"]
