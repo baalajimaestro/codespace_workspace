@@ -8,8 +8,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     ANDROID_HOME="/opt/android-sdk" \
     CMDLINE_VERSION="4.0" \
     SDK_TOOLS_VERSION="7583922" \
-    BUILD_TOOLS_VERSION="30.1.0" \
-    ANDROID_PLATFORM_VERSION="android-30" \
+    BUILD_TOOLS_VERSION="31.0.0" \
+    ANDROID_PLATFORM_VERSION="android-31" \
     LANG="C.UTF-8" \
     DEFAULT_PATH="/usr/lib64/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
@@ -131,8 +131,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     ANDROID_HOME="/opt/android-sdk" \
     CMDLINE_VERSION="4.0" \
     SDK_TOOLS_VERSION="7583922" \
-    BUILD_TOOLS_VERSION="30.1.0" \
-    ANDROID_PLATFORM_VERSION="android-30" \
+    BUILD_TOOLS_VERSION="31.0.0" \
+    ANDROID_PLATFORM_VERSION="android-31" \
     LANG="C.UTF-8"
 
 ENV PATH=$DEFAULT_PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION}/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/build-tools/${BUILD_TOOLS_VERSION}:/opt/gradle/bin
