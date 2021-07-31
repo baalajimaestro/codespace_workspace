@@ -12,6 +12,14 @@ chmod 600 ~/.ssh/authorized_keys
 mv baalajimaestro.gpg /tmp
 ngrok authtoken ${NGROK_TOKEN}
 
+# Heroku Crapware
+echo "machine api.heroku.com" >> ~/.netrc
+echo "  login baalajimaestro@computer4u.com" >> ~/.netrc
+echo "  password $HEROKU_PASSWORD" >> ~/.netrc
+echo "machine git.heroku.com" >> ~/.netrc
+echo "  login baalajimaestro@computer4u.com" >> ~/.netrc
+echo "  password $HEROKU_PASSWORD" >> ~/.netrc
+
 echo "Import GPG keys yourself, placed in /tmp"
 git config --global user.name baalajimaestro
 git config --global user.email "me@baalajimaestro.me"
