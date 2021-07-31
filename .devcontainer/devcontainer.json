@@ -12,7 +12,10 @@
     "esbenp.prettier-vscode",
     "ms-vsliveshare.vsliveshare",
     "aleg94.share-snippet",
-    "christian-kohler.path-intellisense"
+    "christian-kohler.path-intellisense",
+    "bradlc.vscode-tailwindcss",
+    "zignd.html-css-class-completion",
+    "mrmlnc.vscode-scss"
   ],
   "runArgs": ["--privileged"],
   "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
