@@ -57,6 +57,8 @@ RUN dnf -y update \
                       ncurses-compat-libs \
                       ncurses-devel \
                       ncurses-libs \
+                      nodejs \
+                      npm \
                       openssh-clients \
                       openssh-server \
                       openssl \
