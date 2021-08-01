@@ -77,7 +77,7 @@ RUN dnf -y update \
                       xz \
                       zip \
     && dnf clean all \
-    && curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash \
+    && curl -sL https://storage.googleapis.com/sem-cli-releases/get.sh | bash \
     && curl -sLo gdrive.tar.gz https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz \
     && tar -xf gdrive.tar.gz \
     && mv gdrive /usr/bin \
@@ -90,11 +90,11 @@ RUN dnf -y update \
     && unzip gradle.zip \
     && mv gradle-6.9 /opt/gradle \
     && rm -rf gradle.zip \
-    && curl https://cli-assets.heroku.com/install.sh | sh
+    && curl -sL https://cli-assets.heroku.com/install.sh | sh
 
 # Install Rust Nightly Toolchain
 RUN mkdir /usr/local/rustup /usr/local/cargo && \
-    wget "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init"; \
+    curl -sLo rustup-init "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init"; \
     chmod +x rustup-init; \
     ./rustup-init -y --no-modify-path --profile default --default-toolchain $RUST_VERSION; \
     rm rustup-init; \
@@ -105,7 +105,7 @@ RUN curl -sLo commandlinetools.zip https://dl.google.com/android/repository/comm
     sudo mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     sudo unzip -qq commandlinetools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
     sudo mv ${ANDROID_SDK_ROOT}/cmdline-tools/* ${ANDROID_SDK_ROOT}/cmdline-tools/${CMDLINE_VERSION} && \
-    rm -v commandlinetools.zip && \
+    rm -rf commandlinetools.zip && \
     mkdir -p ~/.android/ && touch ~/.android/repositories.cfg && \
     yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --licenses > /dev/null && \
     echo "Accepted all available licenses for Android SDK" && \
