@@ -24,6 +24,9 @@ RUN dnf -y update \
     && sudo dnf config-manager \
                 --add-repo \
                 https://download.docker.com/linux/fedora/docker-ce.repo \
+    && sudo dnf config-manager \
+                --add-repo \
+                https://dl.yarnpkg.com/rpm/yarn.repo \
     && dnf -y update \
     && dnf -y install autogen \
                       automake \
@@ -75,6 +78,7 @@ RUN dnf -y update \
                       wget \
                       which \
                       xz \
+                      yarn \
                       zip \
     && dnf clean all \
     && curl -sL https://storage.googleapis.com/sem-cli-releases/get.sh | bash \
