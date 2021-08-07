@@ -19,68 +19,68 @@ ENV PATH=$DEFAULT_PATH:/usr/local/cargo/bin:${ANDROID_SDK_ROOT}/cmdline-tools/${
 COPY supervisord.conf /etc/supervisord.conf
 COPY prune-container.sh /usr/local/bin/prune-container.sh
 
-RUN dnf -y update \
-    && dnf -y install dnf-plugins-core \
+RUN dnf -y -q update \
+    && dnf -y -q install dnf-plugins-core \
     && sudo dnf config-manager \
                 --add-repo \
                 https://download.docker.com/linux/fedora/docker-ce.repo \
     && sudo dnf config-manager \
                 --add-repo \
                 https://dl.yarnpkg.com/rpm/yarn.repo \
-    && dnf -y update \
-    && dnf -y install autogen \
-                      automake \
-                      bc \
-                      binutils \
-                      ccache \
-                      clang \
-                      containerd.io \
-                      cpio \
-                      curl \
-                      diffutils \
-                      docker-ce \
-                      docker-ce-cli \
-                      file \
-                      gawk \
-                      gcc \
-                      gcc-c++ \
-                      git \
-                      gmp-devel \
-                      gnupg \
-                      hostname \
-                      htop \
-                      java-openjdk-headless \
-                      lftp \
-                      libtool \
-                      m4 \
-                      make \
-                      megatools \
-                      moreutils \
-                      nano \
-                      ncurses-compat-libs \
-                      ncurses-devel \
-                      ncurses-libs \
-                      nodejs \
-                      npm \
-                      openssh-clients \
-                      openssh-server \
-                      openssl \
-                      openssl-devel \
-                      pigz \
-                      pinentry \
-                      procps \
-                      python3 \
-                      python3-pip \
-                      rclone \
-                      shtool \
-                      supervisor \
-                      tar \
-                      wget \
-                      which \
-                      xz \
-                      yarn \
-                      zip \
-    && dnf clean all \
+    && dnf -y -q update \
+    && dnf -y -q install autogen \
+                         automake \
+                         bc \
+                         binutils \
+                         ccache \
+                         clang \
+                         containerd.io \
+                         cpio \
+                         curl \
+                         diffutils \
+                         docker-ce \
+                         docker-ce-cli \
+                         file \
+                         gawk \
+                         gcc \
+                         gcc-c++ \
+                         git \
+                         gmp-devel \
+                         gnupg \
+                         hostname \
+                         htop \
+                         java-openjdk-headless \
+                         lftp \
+                         libtool \
+                         m4 \
+                         make \
+                         megatools \
+                         moreutils \
+                         nano \
+                         ncurses-compat-libs \
+                         ncurses-devel \
+                         ncurses-libs \
+                         nodejs \
+                         npm \
+                         openssh-clients \
+                         openssh-server \
+                         openssl \
+                         openssl-devel \
+                         pigz \
+                         pinentry \
+                         procps \
+                         python3 \
+                         python3-pip \
+                         rclone \
+                         shtool \
+                         supervisor \
+                         tar \
+                         wget \
+                         which \
+                         xz \
+                         yarn \
+                         zip \
+    && dnf -q clean all \
     && curl -sL https://storage.googleapis.com/sem-cli-releases/get.sh | bash \
     && curl -sLo gdrive.tar.gz https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz \
     && tar -xf gdrive.tar.gz \
