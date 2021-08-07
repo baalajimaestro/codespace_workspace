@@ -94,7 +94,11 @@ RUN dnf -y update \
     && unzip gradle.zip \
     && mv gradle-6.9 /opt/gradle \
     && rm -rf gradle.zip \
-    && curl -sL https://cli-assets.heroku.com/install.sh | sh
+    && curl -sL https://cli-assets.heroku.com/install.sh | sh \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && aws/install \
+    && rm -rf awscliv2.zip aws
 
 # Install Rust Nightly Toolchain
 RUN mkdir /usr/local/rustup /usr/local/cargo && \
