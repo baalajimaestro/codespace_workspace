@@ -87,16 +87,16 @@ RUN dnf -y update \
     && mv gdrive /usr/bin \
     && rm -rf gdrive.tar.gz \
     && curl -sLo ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip \
-    && unzip ngrok.zip \
+    && unzip -qq ngrok.zip \
     && mv ngrok /usr/bin \
     && rm -rf ngrok.zip \
     && curl -sLo gradle.zip https://services.gradle.org/distributions/gradle-6.9-bin.zip \
-    && unzip gradle.zip \
+    && unzip -qq gradle.zip \
     && mv gradle-6.9 /opt/gradle \
     && rm -rf gradle.zip \
     && curl -sL https://cli-assets.heroku.com/install.sh | sh \
     && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
+    && unzip -qq awscliv2.zip \
     && aws/install \
     && rm -rf awscliv2.zip aws
 
