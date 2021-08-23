@@ -10,6 +10,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     SDK_TOOLS_VERSION="7583922" \
     BUILD_TOOLS_VERSION="31.0.0" \
     ANDROID_PLATFORM_VERSION="android-31" \
+    EKSCTL_VERSION="0.62.0" \
     LANG="C.UTF-8" \
     DEFAULT_PATH="/usr/lib64/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
@@ -98,7 +99,11 @@ RUN dnf -y -q update \
     && curl -sL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip -qq awscliv2.zip \
     && aws/install \
-    && rm -rf awscliv2.zip aws
+    && rm -rf awscliv2.zip aws \
+    && curl -sL "https://github.com/weaveworks/eksctl/releases/download/${EKSCTL_VERSION}/eksctl_Linux_amd64.tar.gz" -o "eksctl_Linux_amd64.tar.gz" \
+    && tar -xvf eksctl_Linux_amd64.tar.gz \
+    && mv eksctl /usr/bin \
+    && rm -rf eksctl_Linux_amd64.tar.gz
 
 # Install Rust Nightly Toolchain
 RUN mkdir /usr/local/rustup /usr/local/cargo && \
